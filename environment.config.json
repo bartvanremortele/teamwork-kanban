@@ -1,0 +1,20 @@
+{
+    "development": {
+        "ENV_CONFIG": {
+            "baseURI": "http://localhost:9000",
+            "baseAPI": "http://localhost:9000/api/"
+        }
+    },
+    "production": {
+        "ENV_CONFIG": {
+            "baseURI": "http://localhost:9000",
+            "baseAPI": "http://localhost:9000/api/"
+        }
+    },
+    "staging": {
+        "ENV_CONFIG": {
+            "baseURI": "http://localhost:9000",
+            "baseAPI": "http://localhost:9000/api/"
+        }
+    }
+}
