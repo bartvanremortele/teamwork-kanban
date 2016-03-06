@@ -27,15 +27,21 @@
     "angular-ui-router": "^0.2.15",
     "toastr": "^2.1.1",
     "angular-animate": "^1.4.5",
-    "ui-bootstrap": "^1.2.2"
+    "angularfire": "^1.1.4",
+    "compass-mixins": "^1.0.2",
+    "angular-bootstrap": "^1.2.2",
+    "checklist-model": "^0.9.0",
+    "angular-drag-and-drop-lists": "^1.4.0"
   },
   "resolutions": {
     "angular": "1.3.17"
   },
   "overrides": {
+    "font-awesome": {
+      "main": "css/font-awesome.css"
+    },
     "bootstrap": {
-      "main": "dist/css/bootstrap.css",
-      "dist": "dist/js/bootstrap.js"
+      "main": "dist/css/bootstrap.css"
     }
   }
 }

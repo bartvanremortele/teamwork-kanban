@@ -4,6 +4,7 @@
     angular
         .module('app.core', [
             'environment.config',
+            'firebase',
             'ngAnimate',
             'ngSanitize',
             'blocks.exception',

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.dashboard')
+        .module('app.project')
         .run(appRun);
 
     appRun.$inject = ['routerHelper'];
@@ -14,13 +14,13 @@
     function getStates() {
         return [
             {
-                state: 'app.dashboard',
+                state: 'app.project',
                 config: {
-                    url: '/',
-                    templateUrl: 'app/dashboard/dashboard.html',
-                    controller: 'DashboardController',
+                    url: '/project/:projectId',
+                    templateUrl: 'app/project/project.html',
+                    controller: 'ProjectController',
                     controllerAs: 'vm',
-                    title: 'Dashboard'
+                    title: 'Project'
                 }
             }
         ];

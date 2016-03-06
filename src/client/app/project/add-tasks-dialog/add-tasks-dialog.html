@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add tasks to sprint</h3>
+</div>
+<div class="modal-body task-list-dialog-body">
+    <select ng-model="vm.selectedMilestone" ng-options="milestone as milestone.title for milestone in vm.milestones.milestones" class="form-control">
+        <option value="">--- Select milestone ---</option>
+    </select>
+    <select ng-model="vm.selectedTasklist" ng-options="tasklist as tasklist.name for tasklist in vm.selectedMilestone.tasklists" class="form-control">
+        <option value="">--- Select tasklist ---</option>
+    </select>
+    <div class="task-list">
+        <ul class="list-group">
+            <li ng-repeat="task in vm.tasks['todo-items']" class="list-group-item">
+                <span class="badge">{{task['estimated-minutes'] / 60}}H</span>
+                <div class="checkbox">
+                    <input type="checkbox" id="{{task.id}}" data-checklist-model="vm.selectedTasks" data-checklist-value="task" />
+                    <label for="{{task.id}}">
+                        {{task.content}}
+                    </label>
+                    <span ng-repeat="label in task.tags" class="label label-default" ng-style="{'background-color': label.color}">{{label.name}}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!--<debug data="vm.selectedTasks"></debug>-->
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

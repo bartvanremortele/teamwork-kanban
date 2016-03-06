@@ -1,12 +1,17 @@
-# My Hottowel Boilerplate
+# Kanban board for Teamwork.com
 
-**Generated from HotTowel Angular**
+This application is a Kanban board for Teamwork.com.
 
->*Opinionated Angular style guide for teams by [@john_papa](//twitter.com/john_papa)*
+Requirements:
+- [Firebase](https://www.firebase.com) as database
+- A Teamwork API key
 
->More details about the styles and patterns used in this app can be found in my [Angular Style Guide](https://github.com/johnpapa/angularjs-styleguide) and my [Angular Patterns: Clean Code](http://jpapa.me/ngclean) course at [Pluralsight](http://pluralsight.com/training/Authors/Details/john-papa) and working in teams.
+Current functionality:
+- List all projects
+- Import tasks from milestones and it's task lists
+- A kanban board with 4 states (Todo, In Progress, To be tested, Done)
 
-## Prerequisites
+## How to install
 
 1. Install [Node.js](http://nodejs.org)
  - on OSX use [homebrew](http://brew.sh) `brew install node`
@@ -21,8 +26,27 @@
     ```
 
     >Refer to these [instructions on how to not require sudo](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md)
+    
+4. Adapt environment.config.json to match your settings:
 
-## Running HotTowel
+    ```javascript
+    {
+        "development": {
+            "ENV_CONFIG": {
+                "teamwork": {
+                  "apikey": "<TEAMWORK API KEY>",
+                  "baseURI": "<TEAMWORK URL>"
+                },
+                "firebase": {
+                  "baseURI": "<FIREBASE URL>"
+                },
+                "baseURI": "http://localhost:9000"
+            }
+        }
+    }
+    ```
+
+## Running Kanban board for Teamwork.com
 
 ### First run
 - The first time you will have to run the app twice because of the missing initial `environment.config.js`

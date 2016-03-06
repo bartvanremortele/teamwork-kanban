@@ -7,3 +7,4 @@ bower_components/
 .tmp
 .idea/
 *environment.config.js
+*environment.config.json

@@ -2,6 +2,8 @@
     'use strict';
 
     angular.module('app.widgets', [
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'checklist-model',
+        'dndLists'
     ]);
 })();
