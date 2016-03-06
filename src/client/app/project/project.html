@@ -1,5 +1,5 @@
-
 <h1>{{vm.sprint.name}}</h1>
+<h6>Remaining hours: {{vm.getTotalEstimatedMinutes() / 60}}</h6>
 <div id="kanban-board">
     <div class="panel panel-default swimlane">
         <div class="panel-heading clearfix">
@@ -44,7 +44,7 @@
         </div>
         <div class="panel-body swimlane-body" dnd-list="" dnd-drop="vm.dropCallback(event, index, item, external, type, 'TO_TEST')">
             <p ng-hide="vm.totest.length > 0" class="empty-message">No tasks</p>
-            <div ng-repeat="todo in vm.totest track by todo.$id" class="task panel panel-default">
+            <div ng-repeat="todo in vm.totest track by todo.$id" dnd-draggable="todo" dnd-effect-allowed="move" class="task panel panel-default">
                 <div class="panel-body task-body">
                     <dnd-nodrag>
                         <div dnd-handle class="handle"><i class="fa fa-arrows"></i></div> {{todo.task.content}}
@@ -61,7 +61,7 @@
         </div>
         <div class="panel-body swimlane-body" dnd-list="" dnd-drop="vm.dropCallback(event, index, item, external, type, 'DONE')">
             <p ng-hide="vm.done.length > 0" class="empty-message">No tasks</p>
-            <div ng-repeat="todo in vm.done track by todo.$id" class="task panel panel-default">
+            <div ng-repeat="todo in vm.done track by todo.$id" dnd-draggable="todo" dnd-effect-allowed="move" class="task panel panel-default">
                 <div class="panel-body task-body">
                     <dnd-nodrag>
                         <div dnd-handle class="handle"><i class="fa fa-arrows"></i></div> {{todo.task.content}}

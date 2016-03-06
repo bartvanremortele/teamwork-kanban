@@ -87,5 +87,19 @@
 
             return true;
         };
+
+        vm.getTotalEstimatedMinutes = function() {
+            var total = 0;
+
+            for (var i = 0; i < vm.todos.length; i++) {
+                total += vm.todos[i].task['estimated-minutes'] || 0
+            }
+
+            for (var j = 0; j <  vm.inprogress.length; j++) {
+                total += vm.inprogress[j].task['estimated-minutes'] || 0
+            }
+
+            return total;
+        }
     }
 })();
