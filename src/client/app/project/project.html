@@ -1,78 +1,77 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>{{vm.sprint.name}}</h1>
+
+<h1>{{vm.sprint.name}}</h1>
+<div id="kanban-board">
+    <div class="panel panel-default swimlane">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Todo</h4>
+            <div class="btn-group pull-right">
+                <button class="btn btn-default" ng-click="vm.showAddTaskDialog()"><i class="fa fa-plus-circle"></i></button>
+            </div>
+        </div>
+        <div class="panel-body swimlane-body" dnd-list="" dnd-drop="vm.dropCallback(event, index, item, external, type, 'TODO')">
+            <p ng-hide="vm.todos.length > 0" class="empty-message">No tasks</p>
+            <div ng-repeat="todo in vm.todos track by todo.$id" dnd-draggable="todo" dnd-effect-allowed="move" class="task panel panel-default">
+                <div class="panel-body task-body">
+                    <dnd-nodrag>
+                        <div dnd-handle class="handle"><i class="fa fa-arrows"></i></div> {{todo.task.content}}
+                        <span ng-repeat="label in todo.task.tags" class="label label-default" ng-style="{'background-color': label.color}">{{label.name}}</span>
+                        <span class="badge">{{todo.task['estimated-minutes'] / 60}}H</span>
+                    </dnd-nodrag>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div id="session-container">
-            <div class="panel panel-default session">
-                <div class="panel-heading clearfix">
-                    <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Todo</h4>
-                    <div class="btn-group pull-right">
-                        <button class="btn btn-default" ng-click="vm.showAddTaskDialog()"><i class="fa fa-plus-circle"></i></button>
-                    </div>
-                </div>
-                <div class="panel-body session-body exercise-container" dnd-list="vm.todos" dnd-drop="vm.dropCallback(event, index, item, external, type, 'TODO')">
-                    <p ng-hide="vm.todos.length > 0" class="empty-message">No tasks</p>
-                    <div ng-repeat="todo in vm.todos" dnd-draggable="todo" dnd-effect-allowed="move" class="exercise panel panel-default">
-                        <div ng-model="exercise" class="panel-body exercise-body">
-                            <dnd-nodrag>
-                                <div dnd-handle class="handle"><i class="fa fa-arrows"></i></div> {{todo.task.content}}
-                                <span ng-repeat="label in todo.task.tags" class="label label-default" ng-style="{'background-color': label.color}">{{label.name}}</span>
-                                <span class="badge">{{todo.task['estimated-minutes'] / 60}}H</span>
-                            </dnd-nodrag>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default session">
-                <div class="panel-heading clearfix">
-                    <h4 class="panel-title pull-left" style="padding-top: 7.5px;">In Progress</h4>
-                </div>
-                <div class="panel-body session-body exercise-container" dnd-list="vm.inprogress" dnd-drop="vm.dropCallback(event, index, item, external, type, 'IN_PROGRESS')">
-                    <p ng-hide="vm.inprogress.length > 0" class="empty-message">No tasks</p>
-                    <div ng-repeat="todo in vm.inprogress" dnd-draggable="todo" dnd-effect-allowed="move" class="exercise panel panel-default">
-                        <div ng-model="exercise" class="panel-body exercise-body">
-                            <i class="fa fa-arrows"></i> {{todo.task.content}}
-                            <span ng-repeat="label in todo.task.tags" class="label label-default" ng-style="{'background-color': label.color}">{{label.name}}</span>
-                            <span class="badge">{{todo.task['estimated-minutes'] / 60}}H</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default session">
-                <div class="panel-heading clearfix">
-                    <h4 class="panel-title pull-left" style="padding-top: 7.5px;">To be tested</h4>
-                </div>
-                <div class="panel-body session-body exercise-container" dnd-list="vm.totest" dnd-drop="vm.dropCallback(event, index, item, external, type, 'TO_TEST')">
-                    <p ng-hide="vm.totest.length > 0" class="empty-message">No tasks</p>
-                    <div ng-repeat="todo in vm.totest" class="exercise panel panel-default">
-                        <div ng-model="exercise" class="panel-body exercise-body">
-                            <i class="fa fa-arrows"></i> {{todo.task.content}}
-                            <span ng-repeat="label in todo.task.tags" class="label label-default" ng-style="{'background-color': label.color}">{{label.name}}</span>
-                            <span class="badge">{{todo.task['estimated-minutes'] / 60}}H</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default session">
-                <div class="panel-heading clearfix">
-                    <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Done</h4>
-                </div>
-                <div class="panel-body session-body exercise-container" dnd-list="vm.done" dnd-drop="vm.dropCallback(event, index, item, external, type, 'DONE')">
-                    <p ng-hide="vm.done.length > 0" class="empty-message">No tasks</p>
-                    <div ng-repeat="todo in vm.done" class="exercise panel panel-default">
-                        <div ng-model="exercise" class="panel-body exercise-body">
-                            <i class="fa fa-arrows"></i> {{todo.task.content}}
-                            <span ng-repeat="label in todo.task.tags" class="label label-default" ng-style="{'background-color': label.color}">{{label.name}}</span>
-                            <span class="badge">{{todo.task['estimated-minutes'] / 60}}H</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div style="clear: both;"></div>
+    <div class="panel panel-default swimlane">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">In Progress</h4>
         </div>
-        <!--<debug data="vm.todos"></debug>-->
+        <div class="panel-body swimlane-body" dnd-list="" dnd-drop="vm.dropCallback(event, index, item, external, type, 'IN_PROGRESS')">
+            <p ng-hide="vm.inprogress.length > 0" class="empty-message">No tasks</p>
+            <div ng-repeat="todo in vm.inprogress track by todo.$id" dnd-draggable="todo" dnd-effect-allowed="move" class="task panel panel-default">
+                <div class="panel-body task-body">
+                    <dnd-nodrag>
+                        <div dnd-handle class="handle"><i class="fa fa-arrows"></i></div> {{todo.task.content}}
+                        <span ng-repeat="label in todo.task.tags" class="label label-default" ng-style="{'background-color': label.color}">{{label.name}}</span>
+                        <span class="badge">{{todo.task['estimated-minutes'] / 60}}H</span>
+                    </dnd-nodrag>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="panel panel-default swimlane">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">To be tested</h4>
+        </div>
+        <div class="panel-body swimlane-body" dnd-list="" dnd-drop="vm.dropCallback(event, index, item, external, type, 'TO_TEST')">
+            <p ng-hide="vm.totest.length > 0" class="empty-message">No tasks</p>
+            <div ng-repeat="todo in vm.totest track by todo.$id" class="task panel panel-default">
+                <div class="panel-body task-body">
+                    <dnd-nodrag>
+                        <div dnd-handle class="handle"><i class="fa fa-arrows"></i></div> {{todo.task.content}}
+                        <span ng-repeat="label in todo.task.tags" class="label label-default" ng-style="{'background-color': label.color}">{{label.name}}</span>
+                        <span class="badge">{{todo.task['estimated-minutes'] / 60}}H</span>
+                    </dnd-nodrag>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default swimlane">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Done</h4>
+        </div>
+        <div class="panel-body swimlane-body" dnd-list="" dnd-drop="vm.dropCallback(event, index, item, external, type, 'DONE')">
+            <p ng-hide="vm.done.length > 0" class="empty-message">No tasks</p>
+            <div ng-repeat="todo in vm.done track by todo.$id" class="task panel panel-default">
+                <div class="panel-body task-body">
+                    <dnd-nodrag>
+                        <div dnd-handle class="handle"><i class="fa fa-arrows"></i></div> {{todo.task.content}}
+                        <span ng-repeat="label in todo.task.tags" class="label label-default" ng-style="{'background-color': label.color}">{{label.name}}</span>
+                        <span class="badge">{{todo.task['estimated-minutes'] / 60}}H</span>
+                    </dnd-nodrag>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
 </div>
+<!--<debug data="vm.todos"></debug>-->

@@ -1,46 +1,40 @@
 /*
- * Evaluations drag&drop interface
+ * Kanban Board drag&drop interface
  */
-#session-container {
-    white-space: nowrap;
-}
+#kanban-board {
+    display:flex;
 
-#session-container .btn-add-session {
-    margin: 10px 10px 0 0;
-    border-color: #ddd;
-    background-color: #f5f5f5;
-}
+    & .swimlane {
+        flex: 1 1;
+        margin: 10px;
 
-.session {
-    margin: 10px 10px 0 0;
-    width: 250px;
-    display: inline-block;
-    vertical-align: top;
-}
+        & .swimlane-body {
+            white-space: normal;
+            padding: 5px;
 
-.session-body {
-    white-space: normal;
+            /**
+            * For the correct positioning of the placeholder element, the dnd-list and
+            * it's children must have position: relative
+            */
+            &[dnd-list], &[dnd-list] > .task {
+                position: relative;
+            }
 
-}
+            & .empty-message {
+                text-align: center;
+            }
 
-.exercise-container {
-    margin: 10px 10px 0 0;
-    padding: 5px;
-}
+            .task {
+                padding: 5px 10px;
+                margin: 5px 0;
+                cursor: move;
 
-.exercise-container .empty-message {
-    text-align: center;
-}
-
-.exercise {
-    width: 230px;
-    padding: 5px 10px;
-    margin: 5px 0;
-    cursor: move;
-}
-
-.exercise-body {
-    padding: 0;
+                & .task-body {
+                    padding: 0;
+                }
+            }
+        }
+    }
 }
 
 .modal {

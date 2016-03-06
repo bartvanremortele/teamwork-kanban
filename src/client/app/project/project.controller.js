@@ -56,22 +56,32 @@
         vm.dropCallback = function(event, index, item, external, type, toState) {
 
             if(item.meta.state === 'TODO') {
-                vm.todos.$remove(index);
+                var record = vm.todos.$getRecord(item.$id);
+                vm.todos.$remove(record);
             } else if(item.meta.state === 'IN_PROGRESS') {
-                vm.inprogress.$remove(item);
+                var record = vm.inprogress.$getRecord(item.$id);
+                vm.inprogress.$remove(record);
             } else if(item.meta.state === 'TO_TEST') {
-                vm.totest.$remove(item);
+                var record = vm.totest.$getRecord(item.$id);
+                vm.totest.$remove(record);
             } else if(item.meta.state === 'DONE') {
-                vm.done.$remove(item);
+                var record = vm.done.$getRecord(item.$id);
+                vm.done.$remove(record);
             }
+
+            // Reflect new state
+            item.meta.state = toState;
 
             if(toState === 'TODO') {
                 vm.todos.$add(item);
             } else if(toState === 'IN_PROGRESS') {
+                item.meta.startedOn = Firebase.ServerValue.TIMESTAMP;
                 vm.inprogress.$add(item);
             } else if(toState === 'TO_TEST') {
+                item.meta.readyOn = Firebase.ServerValue.TIMESTAMP;
                 vm.totest.$add(item);
             } else if(toState === 'DONE') {
+                item.meta.doneOn = Firebase.ServerValue.TIMESTAMP;
                 vm.done.$add(item);
             }
 
